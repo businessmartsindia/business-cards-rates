@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Business Marts - Marketing Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --success-color: #2ecc71;
+            --whatsapp-color: #25D366;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .company-name {
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: bold;
+            background: linear-gradient(to right, #fff 0%, #3498db 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 80px;
+            margin-top: 5px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        /* Modern Login Container */
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+        
+        .login-container h2 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            font-size: clamp(20px, 4vw, 24px);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .login-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: clamp(14px, 3vw, 16px);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        
+        .form-group i {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            color: #aaa;
+        }
+        
+        /* Smart Login Button */
+        .login-btn {
+            background: linear-gradient(to right, var(--primary-color) 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(to right, #2980b9 0%, var(--primary-color) 100%);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .category {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        
+        .category h2 {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 8px;
+            font-size: clamp(20px, 4vw, 26px);
+            margin-top: 0;
+        }
+        
+        .welcome-message {
+            text-align: center;
+            font-size: clamp(22px, 5vw, 28px);
+            color: var(--secondary-color);
+            margin: 20px 0;
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .welcome-message::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Product Items Styling */
+        .product {
+            margin: 15px 0;
+            padding: 0;
+        }
+        
+        .product h3 {
+            color: var(--primary-color);
+            font-size: clamp(18px, 4vw, 22px);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .product-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #fff;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .product-header {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: clamp(14px, 3vw, 16px);
+            width: 100%;
+        }
+        
+        .product-controls {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+        }
+        
+        .qty-input {
+            width: 100px;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .qty-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        
+        .rate-info {
+            font-style: italic;
+            color: #777;
+            font-size: clamp(12px, 3vw, 14px);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .double-side {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .double-side input {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            accent-color: var(--primary-color);
+        }
+        
+        .double-side label {
+            font-size: clamp(13px, 3vw, 15px);
+        }
+        
+        .total-price {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: clamp(14px, 3vw, 18px);
+            text-align: right;
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Validation styles */
+        .required-field::after {
+            content: " *";
+            color: var(--accent-color);
+        }
+        
+        .error-message {
+            color: var(--accent-color);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        input.error {
+            border-color: var(--accent-color) !important;
+        }
+        
+        .requirements-note {
+            font-size: 13px;
+            margin-top: 15px;
+            color: #777;
+            text-align: center;
+        }
+        
+        /* Order Submission Section */
+        .order-submission {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        
+        .order-submission h2 {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 8px;
+            font-size: clamp(20px, 4vw, 26px);
+            margin-top: 0;
+        }
+        
+        .order-submission p {
+            font-size: clamp(14px, 3vw, 16px);
+        }
+        
+        .submission-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .email-btn, .whatsapp-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .email-btn {
+            background: linear-gradient(to right, var(--primary-color) 0%, #2980b9 100%);
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(to right, var(--whatsapp-color) 0%, #128C7E 100%);
+        }
+        
+        .design-note {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            font-size: clamp(13px, 3vw, 14px);
+            color: var(--dark-color);
+        }
+        
+        .design-note a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .design-note a:hover {
+            text-decoration: underline;
+        }
+        
+        /* User greeting */
+        .user-greeting {
+            text-align: center;
+            font-size: clamp(16px, 4vw, 20px);
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .user-greeting span {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Logout button */
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+        
+        /* Session timeout warning */
+        .timeout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .timeout-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .timeout-content h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+        
+        .timeout-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .timeout-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .extend-btn {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .logout-now-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        /* Order History Section */
+        .order-history {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        
+        .order-history h2 {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 8px;
+            font-size: clamp(20px, 4vw, 26px);
+            margin-top: 0;
+        }
+        
+        .history-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+        
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .history-order-id {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .history-date {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .history-total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .history-products {
+            margin-top: 10px;
+        }
+        
+        .history-product {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .no-history {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+            padding: 20px;
+        }
+        
+        /* Tabs for switching between order and history */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+            color: var(--dark-color);
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Responsive adjustments for larger screens */
+        @media (min-width: 768px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px;
+            }
+            
+            .company-name {
+                margin-bottom: 0;
+                text-align: left;
+            }
+            
+            .logo {
+                max-height: 100px;
+                margin-top: 10px;
+            }
+            
+            .login-container {
+                padding: 25px;
+                margin: 0;
+            }
+            
+            .content {
+                padding: 30px;
+            }
+            
+            .category {
+                padding: 25px;
+            }
+            
+            .product-header {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .product-title {
+                min-width: 250px;
+            }
+            
+            .submission-buttons {
+                flex-direction: row;
+            }
+            
+            .email-btn, .whatsapp-btn {
+                flex: 1;
+                min-width: 200px;
+            }
+            
+            .history-header {
+                flex-direction: row;
+            }
+        }
+        
+        /* Floating labels effect */
+        .form-group.focused label {
+            color: var(--primary-color);
+        }
+        
+        /* Animated checkbox */
+        .double-side-check {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .double-side-check::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            margin-right: 8px;
+            vertical-align: middle;
+            transition: all 0.2s;
+        }
+        
+        .double-side-check:checked::before {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .double-side-check:checked::after {
+            content: '✓';
+            position: absolute;
+            left: 4px;
+            top: 2px;
+            color: white;
+            font-size: 12px;
+        }
+        
+        /* Prevent zoom on input focus on mobile */
+        @media (max-width: 480px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
+    </style>
+
+<style>
+    body, html {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    .content {
+        padding: 10px;
+        margin: 0;
+    }
+
+    .login-container,
+    .category,
+    .order-submission,
+    .order-history {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .product-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .qty-input {
+        width: 100%;
+    }
+
+    .total-price {
+        text-align: left;
+    }
+
+    .submission-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .email-btn, .whatsapp-btn {
+        min-width: unset;
+        width: 100%;
+    }
+
+    @media (max-width: 480px) {
+        .product-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .product-title {
+            width: 100%;
+        }
+
+        .qty-input, .total-price {
+            width: 100%;
+        }
+        
+        .logout-btn {
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        
+        .history-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .history-date {
+            margin-top: 5px;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">Business Marts</div>
+        <div class="logo-container">
+            <img src="https://www.dropbox.com/scl/fi/siqzhazsevewbyczv6aoi/logo-1500-x-500-pixcel.png?rlkey=n21t4iy8dcqp9lkyfojnzyapn&st=9t8i2d0n&dl=1" 
+                 alt="Business Marts Logo" class="logo"
+                 onerror="this.onerror=null;this.src='https://via.placeholder.com/300x100?text=Business+Marts+Logo';">
+        </div>
+        <div class="login-container" id="loginContainer">
+            <h2>Login <i class="fas fa-sign-in-alt"></i></h2>
+            <form id="loginForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="userId" class="required-field">User ID</label>
+                    <input type="text" id="userId" placeholder="Enter your user ID" required>
+                    <i class="fas fa-id-card"></i>
+                    <div class="error-message" id="userIdError">Please enter your user ID</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="required-field">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <i class="fas fa-lock"></i>
+                    <div class="error-message" id="passwordError">Please enter your password</div>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                
+                <div class="requirements-note">
+                    Don't have an account? <a href="#" id="showRegister">Register here</a>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Registration Container (hidden by default) -->
+        <div class="login-container hidden" id="registerContainer">
+            <h2>Create Account <i class="fas fa-user-plus"></i></h2>
+            <form id="registerForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="regFullName" class="required-field">Full Name</label>
+                    <input type="text" id="regFullName" placeholder="Enter your full name" required>
+                    <i class="fas fa-user"></i>
+                    <div class="error-message" id="regNameError">Please enter your full name</div>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail" class="required-field">Email Address</label>
+                    <input type="email" id="regEmail" placeholder="Enter your email" required>
+                    <i class="fas fa-envelope"></i>
+                    <div class="error-message" id="regEmailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regUserId" class="required-field">User ID</label>
+                    <input type="text" id="regUserId" placeholder="Create your user ID" required>
+                    <i class="fas fa-id-card"></i>
+                    <div class="error-message" id="regUserIdError">Please create a user ID</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regPassword" class="required-field">Password</label>
+                    <input type="password" id="regPassword" placeholder="Create your password" required minlength="6">
+                    <i class="fas fa-lock"></i>
+                    <div class="error-message" id="regPasswordError">Password must be at least 6 characters</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="regMobile" class="required-field">Mobile Number</label>
+                    <input type="tel" id="regMobile" placeholder="Enter 10-digit mobile number" required inputmode="tel" pattern="[0-9]{10}" maxlength="10">
+                    <i class="fas fa-phone"></i>
+                    <div class="error-message" id="regMobileError">Please enter a valid 10-digit mobile number</div>
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+                <div class="requirements-note">
+                    Already have an account? <a href="#" id="showLogin">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="content hidden" id="mainContent">
+        <button class="logout-btn hidden" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+        <div class="welcome-message">Welcome to Business Marts!</div>
+        <div class="user-greeting">Hello, <span id="userNameDisplay"></span>!</div>
+        
+        <!-- Tabs for switching between order and history -->
+        <div class="tabs">
+            <div class="tab active" data-tab="order">Place Order</div>
+            <div class="tab" data-tab="history">Order History</div>
+        </div>
+        
+        <!-- Order Tab Content -->
+        <div class="tab-content active" id="orderTab">
+            <div class="category">
+                <h2>Offline Marketing Products</h2>
+                
+                <div class="product">
+                    <h3>Business Cards</h3>
+                    <span class="rate-info">Minimum quantity: 1000 (or 0 if not needed)</span>
+                    
+                    <div class="product-item">
+                        <div class="product-header">
+                            <span class="product-title">1. Without lamination Cards</span>
+                            <div class="product-controls">
+                                <span>Quantity: </span>
+                                <select class="qty-input" data-base-rate="270"><option value="0">0</option><option value="1000">1000</option><option value="2000">2000</option><option value="3000">3000</option><option value="4000">4000</option><option value="5000">5000</option><option value="6000">6000</option><option value="7000">7000</option><option value="8000">8000</option><option value="9000">9000</option><option value="10000">10000</option></select>
+                                <span class="total-price">0 Rs</span>
+                            </div>
+                        </div>
+                        <div class="double-side">
+                            <input type="checkbox" id="ds1" class="double-side-check" data-additional-rate="100"> 
+                            <label for="ds1">Double side printing (+100 Rs per 1000)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-header">
+                            <span class="product-title">2. Gloss Coated Small Cards</span>
+                            <div class="product-controls">
+                                <span>Quantity: </span>
+                                <select class="qty-input" data-base-rate="300"><option value="0">0</option><option value="1000">1000</option><option value="2000">2000</option><option value="3000">3000</option><option value="4000">4000</option><option value="5000">5000</option><option value="6000">6000</option><option value="7000">7000</option><option value="8000">8000</option><option value="9000">9000</option><option value="10000">10000</option></select>
+                                <span class="total-price">0 Rs</span>
+                            </div>
+                        </div>
+                        <div class="double-side">
+                            <input type="checkbox" id="ds2" class="double-side-check" data-additional-rate="100"> 
+                            <label for="ds2">Double side printing (+100 Rs per 1000)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-header">
+                            <span class="product-title">3. Without Lamination Small Cards</span>
+                            <div class="product-controls">
+                                <span>Quantity: </span>
+                                <select class="qty-input" data-base-rate="250"><option value="0">0</option><option value="1000">1000</option><option value="2000">2000</option><option value="3000">3000</option><option value="4000">4000</option><option value="5000">5000</option><option value="6000">6000</option><option value="7000">7000</option><option value="8000">8000</option><option value="9000">9000</option><option value="10000">10000</option></select>
+                                <span class="total-price">0 Rs</span>
+                            </div>
+                        </div>
+                        <div class="double-side">
+                            <input type="checkbox" id="ds3" class="double-side-check" data-additional-rate="100"> 
+                            <label for="ds3">Double side printing (+100 Rs per 1000)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-header">
+                            <span class="product-title">4. Gloss Coated Cards</span>
+                            <div class="product-controls">
+                                <span>Quantity: </span>
+                                <select class="qty-input" data-base-rate="330"><option value="0">0</option><option value="1000">1000</option><option value="2000">2000</option><option value="3000">3000</option><option value="4000">4000</option><option value="5000">5000</option><option value="6000">6000</option><option value="7000">7000</option><option value="8000">8000</option><option value="9000">9000</option><option value="10000">10000</option></select>
+                                <span class="total-price">0 Rs</span>
+                            </div>
+                        </div>
+                        <div class="double-side">
+                            <input type="checkbox" id="ds4" class="double-side-check" data-additional-rate="100"> 
+                            <label for="ds4">Double side printing (+100 Rs per 1000)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-header">
+                            <span class="product-title">5. Gloss Laminated Cards</span>
+                            <div class="product-controls">
+                                <span>Quantity: </span>
+                                <select class="qty-input" data-base-rate="350"><option value="0">0</option><option value="1000">1000</option><option value="2000">2000</option><option value="3000">3000</option><option value="4000">4000</option><option value="5000">5000</option><option value="6000">6000</option><option value="7000">7000</option><option value="8000">8000</option><option value="9000">9000</option><option value="10000">10000</option></select>
+                                <span class="total-price">0 Rs</span>
+                            </div>
+                        </div>
+                        <div class="double-side">
+                            <input type="checkbox" id="ds5" class="double-side-check" data-additional-rate="100"> 
+                            <label for="ds5">Double side printing (+100 Rs per 1000)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-header">
+                            <span class="product-title">6. Matt Lamination Cards</span>
+                            <div class="product-controls">
+                                <span>Quantity: </span>
+                                <select class="qty-input" data-base-rate="650"><option value="0">0</option><option value="1000">1000</option><option value="2000">2000</option><option value="3000">3000</option><option value="4000">4000</option><option value="5000">5000</option><option value="6000">6000</option><option value="7000">7000</option><option value="8000">8000</option><option value="9000">9000</option><option value="10000">10000</option></select>
+                                <span class="total-price">0 Rs</span>
+                            </div>
+                        </div>
+                        <div class="double-side">
+                            <input type="checkbox" id="ds6" class="double-side-check" data-additional-rate="100"> 
+                            <label for="ds6">Double side printing (+100 Rs per 1000)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="product-item">
+                        <div class="product-header">
+                            <span class="product-title">7. Matt lamination UV coated Cards</span>
+                            <div class="product-controls">
+                                <span>Quantity: </span>
+                                <select class="qty-input" data-base-rate="1100"><option value="0">0</option><option value="1000">1000</option><option value="2000">2000</option><option value="3000">3000</option><option value="4000">4000</option><option value="5000">5000</option><option value="6000">6000</option><option value="7000">7000</option><option value="8000">8000</option><option value="9000">9000</option><option value="10000">10000</option></select>
+                                <span class="total-price">0 Rs</span>
+                            </div>
+                        </div>
+                        <div class="double-side">
+                            <input type="checkbox" id="ds7" class="double-side-check" data-additional-rate="100"> 
+                            <label for="ds7">Double side printing (+100 Rs per 1000)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Submission Section -->
+            <div class="order-submission">
+                <h2>Submit Your Order</h2>
+                <p>Please submit your order details using one of the following methods:</p>
+                
+                <div class="submission-buttons">
+                    <button class="email-btn" id="emailOrderBtn">
+                        <i class="fas fa-envelope"></i> Email Order
+                    </button>
+                    <button class="whatsapp-btn" id="whatsappOrderBtn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Order
+                    </button>
+                </div>
+                
+                <div class="design-note">
+                    <strong>Note:</strong> Please send your design files to <a href="mailto:design@businessmarts.site">design@businessmarts.site</a> 
+                    before submitting your order. Include your name and contact information in the email.
+                </div>
+            </div>
+        </div>
+        
+        <!-- History Tab Content -->
+        <div class="tab-content" id="historyTab">
+            <div class="order-history">
+                <h2>Your Order History</h2>
+                <div id="historyItemsContainer">
+                    <div class="no-history">No order history found. Place your first order to see it here.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Session timeout modal -->
+    <div class="timeout-modal" id="timeoutModal">
+        <div class="timeout-content">
+            <h3>Session About to Expire</h3>
+            <p>Your session will expire in <span id="countdown">2:00</span> due to inactivity. Do you want to continue?</p>
+            <div class="timeout-buttons">
+                <button class="timeout-btn extend-btn" id="extendSessionBtn">Continue</button>
+                <button class="timeout-btn logout-now-btn" id="logoutNowBtn">Logout Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Store user data and order history in localStorage
+        const USERS_KEY = 'businessMartsUsers';
+        const ORDERS_KEY = 'businessMartsOrders';
+        const CURRENT_USER_KEY = 'businessMartsCurrentUser';
+        
+        // Initialize storage if empty
+        if (!localStorage.getItem(USERS_KEY)) {
+            localStorage.setItem(USERS_KEY, JSON.stringify([]));
+        }
+        
+        if (!localStorage.getItem(ORDERS_KEY)) {
+            localStorage.setItem(ORDERS_KEY, JSON.stringify([]));
+        }
+        
+        // Get all users
+        function getAllUsers() {
+            return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
+        }
+        
+        // Get all orders
+        function getAllOrders() {
+            return JSON.parse(localStorage.getItem(ORDERS_KEY)) || [];
+        }
+        
+        // Get current user
+        function getCurrentUser() {
+            return JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
+        }
+        
+        // Set current user
+        function setCurrentUser(user) {
+            if (user) {
+                localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+            } else {
+                localStorage.removeItem(CURRENT_USER_KEY);
+            }
+        }
+        
+        // Add a new user
+        function addUser(user) {
+            const users = getAllUsers();
+            users.push(user);
+            localStorage.setItem(USERS_KEY, JSON.stringify(users));
+        }
+        
+        // Add a new order
+        function addOrder(order) {
+            const orders = getAllOrders();
+            orders.push(order);
+            localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+        }
+        
+        // Get orders for current user
+        function getUserOrders(userId) {
+            const orders = getAllOrders();
+            return orders.filter(order => order.userId === userId);
+        }
+        
+        // Check if user ID exists
+        function userIdExists(userId) {
+            const users = getAllUsers();
+            return users.some(user => user.userId === userId);
+        }
+        
+        // Check if email exists
+        function emailExists(email) {
+            const users = getAllUsers();
+            return users.some(user => user.email === email);
+        }
+        
+        // Check if mobile exists
+        function mobileExists(mobile) {
+            const users = getAllUsers();
+            return users.some(user => user.mobile === mobile);
+        }
+        
+        // Authenticate user
+        function authenticateUser(userId, password) {
+            const users = getAllUsers();
+            return users.find(user => user.userId === userId && user.password === password);
+        }
+        
+        // Store user data
+        let userData = {
+            fullName: '',
+            email: '',
+            userId: '',
+            mobile: '',
+            password: ''
+        };
+        
+        // Session timeout variables
+        let timeout;
+        let timeoutWarning;
+        const timeoutDuration = 30 * 60 * 1000; // 30 minutes in milliseconds
+        const warningDuration = 2 * 60 * 1000; // 2 minutes warning before timeout
+        
+        // Start session timer
+        function startSessionTimer() {
+            // Clear any existing timers
+            resetSessionTimer();
+            
+            // Set timeout for session expiration
+            timeout = setTimeout(logout, timeoutDuration);
+            
+            // Set timeout for warning (2 minutes before expiration)
+            timeoutWarning = setTimeout(showTimeoutWarning, timeoutDuration - warningDuration);
+        }
+        
+        // Reset session timer on user activity
+        function resetSessionTimer() {
+            clearTimeout(timeout);
+            clearTimeout(timeoutWarning);
+            startSessionTimer();
+        }
+        
+        // Show timeout warning modal
+        function showTimeoutWarning() {
+            const modal = document.getElementById('timeoutModal');
+            const countdownElement = document.getElementById('countdown');
+            
+            // Show modal
+            modal.style.display = 'flex';
+            
+            // Start countdown
+            let seconds = 120;
+            const countdown = setInterval(() => {
+                seconds--;
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                countdownElement.textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdown);
+                    logout();
+                }
+            }, 1000);
+            
+            // Extend session button
+            document.getElementById('extendSessionBtn').addEventListener('click', () => {
+                clearInterval(countdown);
+                modal.style.display = 'none';
+                resetSessionTimer();
+            });
+            
+            // Logout now button
+            document.getElementById('logoutNowBtn').addEventListener('click', logout);
+        }
+        
+        // Logout function
+        function logout() {
+            // Clear timers
+            clearTimeout(timeout);
+            clearTimeout(timeoutWarning);
+            
+            // Clear current user
+            setCurrentUser(null);
+            
+            // Hide main content and show login form
+            document.getElementById('mainContent').classList.add('hidden');
+            document.getElementById('logoutBtn').classList.add('hidden');
+            document.getElementById('loginContainer').classList.remove('hidden');
+            document.getElementById('registerContainer').classList.add('hidden');
+            
+            // Reset forms
+            document.getElementById('loginForm').reset();
+            document.getElementById('registerForm').reset();
+            
+            // Reset user data
+            userData = {
+                fullName: '',
+                email: '',
+                userId: '',
+                mobile: '',
+                password: ''
+            };
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Load user orders into history
+        function loadUserOrders() {
+            const currentUser = getCurrentUser();
+            if (!currentUser) return;
+            
+            const orders = getUserOrders(currentUser.userId);
+            const container = document.getElementById('historyItemsContainer');
+            
+            if (orders.length === 0) {
+                container.innerHTML = '<div class="no-history">No order history found. Place your first order to see it here.</div>';
+                return;
+            }
+            
+            // Sort orders by date (newest first)
+            orders.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            container.innerHTML = '';
+            
+            orders.forEach(order => {
+                const orderElement = document.createElement('div');
+                orderElement.className = 'history-item';
+                
+                let productsHtml = '';
+                order.products.forEach(product => {
+                    productsHtml += `
+                        <div class="history-product">
+                            <span>${product.title} (${product.quantity})</span>
+                            <span>${product.price} Rs</span>
+                        </div>
+                    `;
+                });
+                
+                orderElement.innerHTML = `
+                    <div class="history-header">
+                        <span class="history-order-id">Order #${order.orderId}</span>
+                        <span class="history-date">${new Date(order.date).toLocaleString()}</span>
+                    </div>
+                    <div class="history-products">
+                        ${productsHtml}
+                    </div>
+                    <div class="history-total">Total: ${order.total} Rs</div>
+                `;
+                
+                container.appendChild(orderElement);
+            });
+        }
+        
+        // Switch between tabs
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(`${tabId}Tab`).classList.add('active');
+                    
+                    // If history tab is clicked, load orders
+                    if (tabId === 'history') {
+                        loadUserOrders();
+                    }
+                });
+            });
+        }
+        
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            document.querySelectorAll('#loginForm .error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('#loginForm input').forEach(el => el.classList.remove('error'));
+
+            // Get form values
+            const userId = document.getElementById('userId').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            let isValid = true;
+
+            // Validate user ID
+            if (!userId) {
+                document.getElementById('userIdError').style.display = 'block';
+                document.getElementById('userId').classList.add('error');
+                isValid = false;
+            }
+
+            // Validate password
+            if (!password) {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('password').classList.add('error');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Authenticate user
+                const user = authenticateUser(userId, password);
+                
+                if (user) {
+                    // Store user data
+                    userData = { ...user };
+                    
+                    // Set current user
+                    setCurrentUser(user);
+                    
+                    // Display user name
+                    document.getElementById('userNameDisplay').textContent = user.fullName;
+                    
+                    // Hide login and show main content
+                    document.getElementById('loginContainer').classList.add('hidden');
+                    document.getElementById('mainContent').classList.remove('hidden');
+                    document.getElementById('logoutBtn').classList.remove('hidden');
+                    
+                    // Start session timer
+                    startSessionTimer();
+                    
+                    // Scroll to top of content
+                    window.scrollTo({
+                        top: 
